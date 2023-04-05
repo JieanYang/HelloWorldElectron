@@ -49,39 +49,41 @@ const createWindow = () => {
 };
 
 app.whenReady().then(() => {
-  const icon = nativeImage.createFromPath(path.join(__dirname, 'assets/favicon-16x16.png'));
-  const tray = new Tray(icon);
+  // ================== Add tray - start ==================
+  // const icon = nativeImage.createFromPath(path.join(__dirname, 'assets/favicon-16x16.png'));
+  // const tray = new Tray(icon);
 
-  const contextMenu = Menu.buildFromTemplate([
-    { label: 'Item1', type: 'radio' },
-    { label: 'Item2', type: 'radio' },
-    { label: 'Item3', type: 'radio', checked: true },
-    { label: 'Item4', type: 'radio' },
-  ]);
+  // const contextMenu = Menu.buildFromTemplate([
+  //   { label: 'Item1', type: 'radio' },
+  //   { label: 'Item2', type: 'radio' },
+  //   { label: 'Item3', type: 'radio', checked: true },
+  //   { label: 'Item4', type: 'radio' },
+  // ]);
 
-  tray.setContextMenu(contextMenu);
-  tray.setToolTip('This is my application');
-  tray.setTitle('This is my title');
+  // tray.setContextMenu(contextMenu);
+  // tray.setToolTip('This is my application');
+  // tray.setTitle('This is my title');
+  // ================== Add tray - end ==================
 
   const mainWindow = createWindow();
 
   // ================== The menu component bans the development tool for web - start ==================
-  const menu = Menu.buildFromTemplate([
-    {
-      label: app.name,
-      submenu: [
-        {
-          click: () => mainWindow.webContents.send('update-counter', 1),
-          label: 'Increment',
-        },
-        {
-          click: () => mainWindow.webContents.send('update-counter', -1),
-          label: 'Decrement',
-        },
-      ],
-    },
-  ]);
-  Menu.setApplicationMenu(menu);
+  // const menu = Menu.buildFromTemplate([
+  //   {
+  //     label: app.name,
+  //     submenu: [
+  //       {
+  //         click: () => mainWindow.webContents.send('update-counter', 1),
+  //         label: 'Increment',
+  //       },
+  //       {
+  //         click: () => mainWindow.webContents.send('update-counter', -1),
+  //         label: 'Decrement',
+  //       },
+  //     ],
+  //   },
+  // ]);
+  // Menu.setApplicationMenu(menu);
   // ================== The menu component bans the development tool for web - end ==================
 
   mainWindow.loadURL('https://google.com');
