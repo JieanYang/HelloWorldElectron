@@ -1,6 +1,7 @@
 // CommonJS module import -> require
 const { app, BrowserWindow, dialog, Menu, ipcMain } = require('electron');
 const path = require('path');
+const fs = require('fs');
 
 const handlePing = (event, args) => {
   console.log('ipcRenderer -> ipcMain, step 3');
@@ -70,6 +71,12 @@ app.whenReady().then(() => {
   // ================== The menu component bans the development tool for web - end ==================
 
   mainWindow.loadURL('https://google.com');
+
+  mainWindow.webContents.on('did-finish-load', () => {
+    const scriptPath = path.join(__dirname, 'renderer_2.js');
+    const scriptContents = fs.readFileSync(scriptPath, 'utf8');
+    mainWindow.webContents.executeJavaScript(scriptContents);
+  });
 
   // macOS 应用通常即使在没有打开任何窗口的情况下也继续运行，并且在没有窗口可用的情况下激活应用时会打开新的窗口
   app.on('activate', () => {
