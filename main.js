@@ -13,6 +13,15 @@ const handleSetTitle = (event, title) => {
   win.setTitle(title);
 };
 
+async function handleFileOpen() {
+  const { canceled, filePaths } = await dialog.showOpenDialog();
+  if (canceled) {
+    return;
+  } else {
+    return filePaths[0];
+  }
+}
+
 // 将index.html加载进一个新的BrowserWindow实例
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -26,6 +35,8 @@ const createWindow = () => {
   ipcMain.handle('ping', handlePing);
 
   ipcMain.on('set-title', handleSetTitle);
+
+  ipcMain.handle('dialog:openFile', handleFileOpen);
 
   win.loadFile('index.html');
 };
