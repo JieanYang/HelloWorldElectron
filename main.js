@@ -1,5 +1,5 @@
 // CommonJS module import -> require
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
 // 将index.html加载进一个新的BrowserWindow实例
@@ -12,6 +12,10 @@ const createWindow = () => {
     },
   });
 
+  ipcMain.handle('ping', () => {
+    console.log('ipcRenderer -> ipcMain, step 3');
+    return 'pong';
+  });
   win.loadFile('index.html');
 };
 
