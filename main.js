@@ -2,6 +2,17 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
+const handlePing = (event, args) => {
+  console.log('ipcRenderer -> ipcMain, step 3');
+  return 'pong';
+};
+
+const handleSetTitle = (event, title) => {
+  const webContents = event.sender;
+  const win = BrowserWindow.fromWebContents(webContents);
+  win.setTitle(title);
+};
+
 // 将index.html加载进一个新的BrowserWindow实例
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -12,10 +23,10 @@ const createWindow = () => {
     },
   });
 
-  ipcMain.handle('ping', () => {
-    console.log('ipcRenderer -> ipcMain, step 3');
-    return 'pong';
-  });
+  ipcMain.handle('ping', handlePing);
+
+  ipcMain.on('set-title', handleSetTitle);
+
   win.loadFile('index.html');
 };
 
