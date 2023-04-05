@@ -1,5 +1,5 @@
 // CommonJS module import -> require
-const { app, BrowserWindow, dialog, Menu, ipcMain } = require('electron');
+const { app, BrowserWindow, dialog, Tray, Menu, nativeImage, ipcMain } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
@@ -49,6 +49,18 @@ const createWindow = () => {
 };
 
 app.whenReady().then(() => {
+  const icon = nativeImage.createFromPath(path.join(__dirname, 'assets/favicon-16x16.png'));
+  const tray = new Tray(icon);
+
+  const contextMenu = Menu.buildFromTemplate([
+    { label: 'Item1', type: 'radio' },
+    { label: 'Item2', type: 'radio' },
+    { label: 'Item3', type: 'radio', checked: true },
+    { label: 'Item4', type: 'radio' },
+  ]);
+
+  tray.setContextMenu(contextMenu);
+
   const mainWindow = createWindow();
 
   // ================== The menu component bans the development tool for web - start ==================
