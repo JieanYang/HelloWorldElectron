@@ -60,6 +60,8 @@ app.whenReady().then(() => {
   ]);
 
   tray.setContextMenu(contextMenu);
+  tray.setToolTip('This is my application');
+  tray.setTitle('This is my title');
 
   const mainWindow = createWindow();
 
