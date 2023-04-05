@@ -1,5 +1,5 @@
 // CommonJS module import -> require
-const { app, BrowserWindow, dialog, ipcMain } = require('electron');
+const { app, BrowserWindow, dialog, Menu, ipcMain } = require('electron');
 const path = require('path');
 
 const handlePing = (event, args) => {
@@ -24,7 +24,7 @@ async function handleFileOpen() {
 
 // 将index.html加载进一个新的BrowserWindow实例
 const createWindow = () => {
-  const win = new BrowserWindow({
+  const windowInstance = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
@@ -38,11 +38,30 @@ const createWindow = () => {
 
   ipcMain.handle('dialog:openFile', handleFileOpen);
 
-  win.loadFile('index.html');
+  windowInstance.loadFile('index.html');
+
+  return windowInstance;
 };
 
 app.whenReady().then(() => {
-  createWindow();
+  const mainWindow = createWindow();
+
+  const menu = Menu.buildFromTemplate([
+    {
+      label: app.name,
+      submenu: [
+        {
+          click: () => mainWindow.webContents.send('update-counter', 1),
+          label: 'Increment',
+        },
+        {
+          click: () => mainWindow.webContents.send('update-counter', -1),
+          label: 'Decrement',
+        },
+      ],
+    },
+  ]);
+  Menu.setApplicationMenu(menu);
 
   // macOS 应用通常即使在没有打开任何窗口的情况下也继续运行，并且在没有窗口可用的情况下激活应用时会打开新的窗口
   app.on('activate', () => {
