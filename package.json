@@ -1,0 +1,8 @@
+{
+  "name": "HelloWorldElectron",
+  "version": "1.0.0",
+  "main": "main.js",
+  "repository": "git@github.com:JieanYang/HelloWorldElectron.git",
+  "author": "Jiean Yang <jiean.yang.freelancer@gmail.com>",
+  "license": "MIT"
+}
