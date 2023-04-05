@@ -1,5 +1,5 @@
 // CommonJS module import -> require
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 const path = require('path');
 
 const handlePing = (event, args) => {
@@ -17,9 +17,9 @@ async function handleFileOpen() {
   const { canceled, filePaths } = await dialog.showOpenDialog();
   if (canceled) {
     return;
-  } else {
-    return filePaths[0];
   }
+
+  return filePaths[0];
 }
 
 // 将index.html加载进一个新的BrowserWindow实例
