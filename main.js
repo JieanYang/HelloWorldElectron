@@ -1,11 +1,15 @@
 // CommonJS module import -> require
 const { app, BrowserWindow } = require('electron');
+const path = require('path');
 
 // 将index.html加载进一个新的BrowserWindow实例
 const createWindow = () => {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+    },
   });
 
   win.loadFile('index.html');
