@@ -4,5 +4,8 @@
   "main": "main.js",
   "repository": "git@github.com:JieanYang/HelloWorldElectron.git",
   "author": "Jiean Yang <jiean.yang.freelancer@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^24.0.0"
+  }
 }
