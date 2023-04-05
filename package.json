@@ -6,9 +6,11 @@
   "author": "Jiean Yang <jiean.yang.freelancer@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "prettier": "prettier --write ."
   },
   "devDependencies": {
-    "electron": "^24.0.0"
+    "electron": "^24.0.0",
+    "prettier": "^2.8.7"
   }
 }
