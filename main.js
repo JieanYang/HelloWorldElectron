@@ -38,6 +38,10 @@ const createWindow = () => {
 
   ipcMain.handle('dialog:openFile', handleFileOpen);
 
+  ipcMain.on('counter-value', (_event, value) => {
+    console.log('conter-value:', value);
+  });
+
   windowInstance.loadFile('index.html');
 
   return windowInstance;
