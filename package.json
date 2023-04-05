@@ -6,12 +6,21 @@
   "author": "Jiean Yang <jiean.yang.freelancer@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "electron .",
-    "prettier": "prettier --write ."
+    "start": "electron-forge start",
+    "prettier": "prettier --write .",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.1.1",
+    "@electron-forge/maker-deb": "^6.1.1",
+    "@electron-forge/maker-rpm": "^6.1.1",
+    "@electron-forge/maker-squirrel": "^6.1.1",
+    "@electron-forge/maker-zip": "^6.1.1",
     "electron": "^24.0.0",
     "prettier": "^2.8.7"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
   }
 }
