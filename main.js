@@ -69,6 +69,8 @@ app.whenReady().then(() => {
   Menu.setApplicationMenu(menu);
   // ================== The menu component bans the development tool for web - end ==================
 
+  mainWindow.loadURL('https://google.com');
+
   // macOS 应用通常即使在没有打开任何窗口的情况下也继续运行，并且在没有窗口可用的情况下激活应用时会打开新的窗口
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
