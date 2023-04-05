@@ -1,5 +1,6 @@
 {
   "name": "HelloWorldElectron",
+  "description": "Hello World, Electron !",
   "version": "1.0.0",
   "main": "main.js",
   "repository": "git@github.com:JieanYang/HelloWorldElectron.git",
